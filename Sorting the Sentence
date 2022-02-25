@@ -1,0 +1,39 @@
+//problem: https://leetcode.com/problems/sorting-the-sentence/
+
+class Solution {
+    public String sortSentence(String s) {
+
+		StringBuffer result = new StringBuffer();
+		String[] arr = s.split("\\s+");
+
+		for (int i = 1; i < arr.length; i++) {
+			String index1 = arr[i].substring(arr[i].length()-1);
+			String index2 = arr[i-1].substring(arr[i-1].length()-1);
+			
+			int j = Integer.parseInt(index1);
+			int k = Integer.parseInt(index2);
+	
+		    if(j < k) {
+				String temp = "";
+				temp = arr[i];
+				arr[i] = arr[i-1];
+				arr[i-1] = temp;
+				i=0;
+			}	
+		}
+          for(int i = 0; i < arr.length; i++) {
+	    	arr[i] = arr[i].substring(0,arr[i].length() -1);
+	    }
+	    
+	    for(int i = 0; i < arr.length; i++) {
+	    	if (i == 0) {
+	    		result.append(arr[i]);
+	    	}else {
+	    		result.append(" "+ arr[i]);
+	    	}
+	    
+	    }
+	    String str = result.toString();   
+      return str;
+    }
+}
