@@ -3,17 +3,17 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         
-        int[] result = new int[2];
-        
-        Map<Integer, Integer> intMap = new HashMap<Integer,Integer>();
+        HashMap<Integer,Integer> sum_index = new HashMap<>();
         
         for(int i = 0; i < nums.length; i++){
-            if(intMap.containsKey(target - nums[i])){
-                result[0] = i;
-                result[1] = intMap.get(target - nums[i]);
-             }
-            intMap.put(nums[i], i);
+            int compliment = target - nums[i]; //x+y = t --> y = t - x --> compliment=target-nums[i] 
+            if(sum_index.containsKey(compliment)){
+                return new int[] {sum_index.get(compliment), i};
+            }
+            
+            sum_index.put(nums[i], i);
         }
-        return result;
+        return new int[] {-1,-1};
+          
     }
 }
