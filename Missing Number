@@ -1,0 +1,29 @@
+//Solution: https://leetcode.com/problems/missing-number/
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        
+        int i = 0;
+        int j = nums[i];   
+        int temp = 0;
+        
+        while(i < nums.length){
+            if(nums[i] < nums.length && nums[i] != i){
+                temp = nums[nums[i]];
+                nums[nums[i]] = nums[i];
+                nums[i] = temp;
+            }
+            else {
+            i++;
+            }   
+        }
+        
+        for(int k = 0; k < nums.length; k++){
+            if(k != nums[k]){   
+                return k;
+            }
+        }
+        
+    return nums.length;
+    }
+}
