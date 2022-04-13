@@ -1,0 +1,41 @@
+//Solution: https://leetcode.com/problems/reverse-linked-list-ii/
+
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(head == null){
+            return null;
+        }
+        ListNode prev = null;
+        ListNode currentNode = head;
+        
+        
+        while(left > 1){
+            prev = currentNode;
+            currentNode = currentNode.next;
+            left--;
+            right--;
+        }
+        
+        //Store references to the nodes we need to connect with the reversed list
+        ListNode connector = prev;
+        ListNode tail = currentNode;
+        
+        while(right > 0){
+            ListNode next_node = currentNode.next;
+            currentNode.next = prev;
+            prev = currentNode;
+            currentNode = next_node;
+            right--;
+        }
+        
+        
+        if(connector != null){
+            connector.next = prev;
+        }else{
+            head = prev;
+        }       
+        tail.next = currentNode;
+        
+        return head;
+    }
+}
