@@ -1,0 +1,45 @@
+//Problem: https://leetcode.com/problems/3sum/
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+    
+        List<List<Integer>> triplets = new ArrayList<>();
+
+        Arrays.sort(nums);
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            int start = i + 1;
+            int end = nums.length - 1;
+            
+            //checks for duplicate on the left side
+            if(i > 0 && nums[i] == nums[i-1]){
+                continue;
+            }
+            
+            while(start < end){  
+                
+                //checks for duplicate on the right side
+                if(end < nums.length-1 && nums[end] == nums[end+1]){
+                    end--;
+                    continue;  
+                }
+                
+                
+                if(nums[i] + nums[start] + nums[end] == 0){
+                    List<Integer> value = Arrays.asList(nums[i], nums[start], nums[end]);
+                    triplets.add(value);
+                    start++;
+                    end--;
+                }else if (nums[i] + nums[start] + nums[end] > 0){
+                    end--;
+                }else {
+                    start++;
+                }
+                
+                
+            }
+        }    
+        return triplets;
+    }
+}
