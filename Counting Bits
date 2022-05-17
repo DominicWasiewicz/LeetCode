@@ -1,0 +1,16 @@
+//Problem: https://leetcode.com/problems/counting-bits/
+
+class Solution {
+    public int[] countBits(int n) {
+        int[] result = new int[n+1];
+        int offSet =1;
+
+        for(int i = 1; i < n+1; i++){
+            if(offSet * 2 == i){
+                offSet = i;
+            }
+            result[i] = 1 + result[i - offSet];
+        }
+        return result;
+    }
+}
