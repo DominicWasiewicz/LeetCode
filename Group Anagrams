@@ -1,0 +1,22 @@
+//Problem: https://leetcode.com/problems/group-anagrams/
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> sortedAnagrams = new ArrayList<>();
+        HashMap<String, List<String>> mappedAnagrams = new HashMap<String, List<String>>();
+        
+        for(String currentWord: strs){   //sort each word
+                char[] characters = currentWord.toCharArray(); 
+                Arrays.sort(characters);
+                //now the word is sorted
+                String sortedWord = new String(characters);
+    
+                if(!mappedAnagrams.containsKey(sortedWord)){
+                     mappedAnagrams.put(sortedWord, new ArrayList<>());
+                }
+                    mappedAnagrams.get(sortedWord).add(currentWord);
+        }
+        sortedAnagrams.addAll(mappedAnagrams.values());
+        return sortedAnagrams;
+    }
+}
